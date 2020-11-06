@@ -17,7 +17,7 @@ function VideoContainer() {
   const nextPage = videosBlock.totalResult
   let lengthPage = 0;
   videos?.forEach(video=>{
-    lengthPage += video.length
+    lengthPage += video?.length
   })
   useEffect(()=>{
     dispatch(addVideos({

@@ -24,7 +24,7 @@ function SearchPhotos() {
       <div className="SearchPhotos__grid">
       {
           photos?.map(photo=>(
-            photo?.map(photo=>(
+            photo.map(photo=>(
               <div key={photo.id}>
                 <MemoizedChildComponent
                 id={photo.id}
