@@ -1,8 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
-
+import photosReducer from '../features/photoSlice';
+import videosReducer from '../features/videoSlice'
 export default configureStore({
   reducer: {
-    counter: counterReducer,
+    photos: photosReducer,
+    videos : videosReducer
   },
 });

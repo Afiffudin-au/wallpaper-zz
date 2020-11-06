@@ -1,0 +1,25 @@
+.CardVideo{
+  margin-bottom: 10px;
+  flex-grow: 1;
+  cursor: pointer;
+  .wrappper{
+    position: relative;
+    img{
+      width: 100%;
+    }
+  }
+  .CardVideo__playBox{
+    position: absolute;
+    top: 40%;
+    left: 40%;
+  }
+  .CardVideo__playIcon{
+    color: white;
+    font-size: 47px;
+    font-weight: bold;
+    transition: color .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    &:hover{
+      color: rgb(10, 131, 245);
+    }
+  }
+}
