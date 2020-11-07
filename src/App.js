@@ -10,6 +10,7 @@ import PhotoDetail from './component/PhotoDetail/PhotoDetail';
 import SearchPhotos from './component/SearchPhotos/SearchPhotos';
 import Navbar from './component/Navbar/Navbar';
 import SearchVideos from './component/SearchVideos/SearchVideos';
+import VideoDetail from './component/VideoDetail/VideoDetail';
 function App() {
   return (
     <Router>
@@ -22,6 +23,9 @@ function App() {
           <Route path="/search-photo">
             <Navbar/>
             <SearchPhotos/>
+          </Route>
+          <Route path="/video-detail">
+            <VideoDetail/>
           </Route>
           <Route path="/photo-detail">
             <PhotoDetail/>

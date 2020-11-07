@@ -13,6 +13,8 @@ function SearchPhotos() {
   const photos = photoSearchBlock.photos
   const [pageNumber,setPageNumber] = useState(1)
   const {getSearchPhotos} = useGetSearchPhotos()
+  const checkLengthVideo = photos[0]?.length <=1 || photos[0]?.length === 0
+  const checkCannotFind = checkLengthVideo && !loading
   useEffect(()=>{
     if(pageNumber === 1){
       return 
@@ -21,6 +23,9 @@ function SearchPhotos() {
   },[pageNumber])
   return (
     <div className="SearchPhotos">
+      {
+        checkCannotFind && <p>Sorry We Cannot Find...</p>
+      }
       <div className="SearchPhotos__grid">
       {
           photos?.map(photo=>(

@@ -14,6 +14,8 @@ function SearchVideos() {
   const nextPage = videoSearchBlock.totalResult
   const query = videoSearchBlock.query
   const videos =videoSearchBlock.videos
+  const checkLengthVideo = videos[0]?.length <=1 || videos[0]?.length === 0
+  const checkCannotFind = checkLengthVideo && !loading
   useEffect(() => {
     if(pageNumber === 1){
       return
@@ -22,6 +24,9 @@ function SearchVideos() {
   },[pageNumber])
   return (
     <div className="SearchVideos">
+      {
+        checkCannotFind && <p>Sorry We Cannot Find...</p>
+      }
       <div className="SearchVideos__grid">
       {
         videos?.map(video=>(

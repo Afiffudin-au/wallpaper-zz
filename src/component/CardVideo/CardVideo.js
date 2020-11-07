@@ -4,10 +4,13 @@ import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
 import { IconButton } from '@material-ui/core';
 import { useGetVideoDetail } from '../../useGetVideos/useGetVideos';
 import LazyLoad from 'react-lazyload';
+import { useHistory } from 'react-router-dom';
 function CardVideo({id,url,image}) {
   const {getVideoDetail} = useGetVideoDetail()
+  const history = useHistory()
   const handleDetail = ()=>{
     getVideoDetail(id)
+    history.push('/video-detail')
   }
   return (
     <div className="CardVideo">

@@ -47,8 +47,8 @@ function Navbar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Video</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Wallpaper</MenuItem>
     </Menu>
   );
 
@@ -63,16 +63,16 @@ function Navbar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
-        <IconButton onClick={handleVideosearch} aria-label="show Video" color="inherit">
+      <MenuItem onClick={handleVideosearch}>
+        <IconButton aria-label="show Video" color="inherit">
           <Badge color="secondary">
             <VideoLibraryIcon />
           </Badge>
         </IconButton>
         <p>Videos</p>
       </MenuItem>
-      <MenuItem>
-        <IconButton onClick={handleWallpaperSearch} aria-label="show Wallpaper" color="inherit">
+      <MenuItem onClick={handleWallpaperSearch}>
+        <IconButton aria-label="show Wallpaper" color="inherit">
           <Badge color="secondary">
             <WallpaperIcon />
           </Badge>

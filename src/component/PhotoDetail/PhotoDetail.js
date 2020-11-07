@@ -9,6 +9,7 @@ function PhotoDetail() {
   const photoDetail = useSelector(selectPhotoDetails)
   const newPhotoDetail = photoDetail.dataPhotoDetails
   const sizeKey = newPhotoDetail?.src
+  const loading = photoDetail.loading
   const handleDownload = (sizeKey)=>{
     if(sizeKey === 'original'){
       saveAs(newPhotoDetail.src.original, `${newPhotoDetail.src.original}.jpg`);
@@ -37,7 +38,7 @@ function PhotoDetail() {
     <div className="PhotoDetail">
       <div className="loading" style={{position : 'sticky',top : 0,marginBottom : '5px'}}>
         {
-          photoDetail.loading && <LinearProgress color="secondary"/>
+          loading && <LinearProgress color="secondary"/>
         }
       </div>
       <div className="PhotoDetails__content">

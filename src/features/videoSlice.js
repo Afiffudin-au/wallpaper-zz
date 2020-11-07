@@ -39,7 +39,6 @@ export const videoSlice = createSlice({
       state.videoSearchBlock.loadingVideo = action.payload.loading
       state.videoSearchBlock.totalResult = action.payload.dataVideo?.total_results
       state.videoSearchBlock.query = action.payload.query
-      console.log(action.payload.query)
       if(action.payload.removeCopyArray){
         state.videoSearchBlock.videos.length = 0
         return
