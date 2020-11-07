@@ -11,6 +11,7 @@ import useStyleNavbar from '../../useStyles/useStyleNavbar';
 import VideoLibraryIcon from '@material-ui/icons/VideoLibrary';
 import WallpaperIcon from '@material-ui/icons/Wallpaper';
 import Search from './Search';
+import { Link } from 'react-router-dom';
 function Navbar() {
   const classes = useStyleNavbar();
   const [typeSearch,setTypeSearch] = useState('Wallpaper')//default Wallpaper
@@ -87,7 +88,9 @@ function Navbar() {
       <AppBar position="static" className={classes.bg}>
         <Toolbar>
           <Typography className={classes.title} variant="h6" noWrap>
-            Wallpaper-zz
+            <Link to="/" style={{textDecoration : "none",color : 'white'}}>
+              Wallpaper-zz
+            </Link>
           </Typography>
           <div className={classes.search}>
            <Search typeSearch={typeSearch}/>
