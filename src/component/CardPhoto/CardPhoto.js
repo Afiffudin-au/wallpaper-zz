@@ -12,7 +12,7 @@ function CardPhoto({id,url,imgPortrait}) {
   }
   return (
     <div className="CardPhoto" onClick={handleDetail}>
-      <LazyLoad height={600} offset={100}>               
+      <LazyLoad height={600} offset={100} width={300}>               
         <img src={imgPortrait} alt={imgPortrait}/>
       </LazyLoad>
     </div>

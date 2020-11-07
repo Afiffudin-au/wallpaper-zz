@@ -38,7 +38,6 @@ function VideoContainer() {
               id={video.id} 
               url={video.url} 
               image={video.image}
-              videoFiles={video.video_files}
               />
             </div>
           ))

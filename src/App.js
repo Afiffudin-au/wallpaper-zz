@@ -9,11 +9,16 @@ import {
 import PhotoDetail from './component/PhotoDetail/PhotoDetail';
 import SearchPhotos from './component/SearchPhotos/SearchPhotos';
 import Navbar from './component/Navbar/Navbar';
+import SearchVideos from './component/SearchVideos/SearchVideos';
 function App() {
   return (
     <Router>
       <div className="App">
         <Switch>
+         <Route path="/search-video">
+            <Navbar/>
+            <SearchVideos/>
+          </Route>
           <Route path="/search-photo">
             <Navbar/>
             <SearchPhotos/>

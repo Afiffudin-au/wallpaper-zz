@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -7,12 +7,13 @@ import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import { useStylesNavbar } from '../../useStyles/useStyles';
+import useStyleNavbar from '../../useStyles/useStyleNavbar';
 import VideoLibraryIcon from '@material-ui/icons/VideoLibrary';
 import WallpaperIcon from '@material-ui/icons/Wallpaper';
 import Search from './Search';
 function Navbar() {
-  const classes = useStylesNavbar();
+  const classes = useStyleNavbar();
+  const [typeSearch,setTypeSearch] = useState('Wallpaper')//default Wallpaper
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const isMenuOpen = Boolean(anchorEl);
@@ -29,7 +30,12 @@ function Navbar() {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
-
+  const handleVideosearch = ()=>{
+    setTypeSearch('Videos')
+  }
+  const handleWallpaperSearch = ()=>{
+    setTypeSearch('Wallpaper')
+  }
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
@@ -58,7 +64,7 @@ function Navbar() {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton aria-label="show Video" color="inherit">
+        <IconButton onClick={handleVideosearch} aria-label="show Video" color="inherit">
           <Badge color="secondary">
             <VideoLibraryIcon />
           </Badge>
@@ -66,7 +72,7 @@ function Navbar() {
         <p>Videos</p>
       </MenuItem>
       <MenuItem>
-        <IconButton aria-label="show Wallpaper" color="inherit">
+        <IconButton onClick={handleWallpaperSearch} aria-label="show Wallpaper" color="inherit">
           <Badge color="secondary">
             <WallpaperIcon />
           </Badge>
@@ -77,23 +83,23 @@ function Navbar() {
   );
 
   return (
-    <div className={classes.grow}>
+    <div className={classes.grow} id="navbar__top">
       <AppBar position="static" className={classes.bg}>
         <Toolbar>
           <Typography className={classes.title} variant="h6" noWrap>
             Wallpaper-zz
           </Typography>
           <div className={classes.search}>
-           <Search/>
+           <Search typeSearch={typeSearch}/>
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show Video" color="inherit">
+            <IconButton onClick={handleVideosearch} aria-label="show Video" color="inherit">
               <Badge color="secondary">
                 <VideoLibraryIcon />
               </Badge>
             </IconButton>
-            <IconButton aria-label="show Wallpaper" color="inherit">
+            <IconButton onClick={handleWallpaperSearch} aria-label="show Wallpaper" color="inherit">
               <Badge color="secondary">
                 <WallpaperIcon />
               </Badge>

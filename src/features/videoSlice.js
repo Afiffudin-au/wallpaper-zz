@@ -8,7 +8,13 @@ export const videoSlice = createSlice({
       loadingVideo : null,
       totalResult : null
     },
-    videosDetails : []
+    videosDetails : [],
+    videoSearchBlock : {
+      videos : [],
+      loadingVideo : null,
+      totalResult : null,
+      query : ''
+    }
   },
   reducers: {
     addVideos: (state,action) => {
@@ -18,6 +24,7 @@ export const videoSlice = createSlice({
         state.videosBlock.videos.length = 0
         return
       }
+      //secure for undefined 
       if(action.payload.dataVideo === undefined){
         return
       }
@@ -27,11 +34,29 @@ export const videoSlice = createSlice({
     },
     addVideoDetails : (state,action)=>{
       state.videosDetails = action.payload
+    },
+    addVideoSearch : (state,action)=>{
+      state.videoSearchBlock.loadingVideo = action.payload.loading
+      state.videoSearchBlock.totalResult = action.payload.dataVideo?.total_results
+      state.videoSearchBlock.query = action.payload.query
+      console.log(action.payload.query)
+      if(action.payload.removeCopyArray){
+        state.videoSearchBlock.videos.length = 0
+        return
+      }
+      //secure for undefined 
+      if(action.payload.dataVideo === undefined){
+        return
+      }
+      if(!action.payload.loading){
+        state.videoSearchBlock.videos = [...state.videoSearchBlock.videos,action.payload?.dataVideo?.videos]
+      }
     }
   },
 });
 
-export const { addVideos,addVideoDetails } = videoSlice.actions
+export const { addVideos,addVideoDetails,addVideoSearch } = videoSlice.actions
 export const selectVideos = state => state.videos.videosBlock
 export const selectVideoDetail = state => state.videos.videosDetails
+export const selectVideoSearchBlock = state => state.videos.videoSearchBlock
 export default videoSlice.reducer;

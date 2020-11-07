@@ -20,11 +20,11 @@ export const photoSlice = createSlice({
     addPhotos: (state,action) => {
       state.photosBlock.loadingPhotos = action.payload.loading
       state.photosBlock.nextPage = action.payload.dataPhotos?.next_page
-      //secure for undefined 
       if(action.payload.removeCopyArray){
         state.photosBlock.photos.length = 0
         return
       }
+      // secure for undefined . 
       if(action.payload.dataPhotos === undefined){
         return
       }
