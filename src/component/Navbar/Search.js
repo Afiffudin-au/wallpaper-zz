@@ -17,7 +17,10 @@ function Search({typeSearch}) {
   const dispatch = useDispatch()
   const handleSearch = (e)=>{
     e.preventDefault()
-    if(!query) return
+    const userText = query.replace(/^\s+/, '').replace(/\s+$/, '');
+    if(userText === ''){
+      return
+    }
     if(typeSearch === 'Wallpaper'){
       dispatch(addResultSearch({
         loading : true,

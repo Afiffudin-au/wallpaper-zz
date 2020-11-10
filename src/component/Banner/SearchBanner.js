@@ -14,7 +14,10 @@ function SearchBanner() {
   const {getSearchPhotos} = useGetSearchPhotos()
   const handleSearch = (e)=>{
     e.preventDefault()
-    if(!query) return
+    const userText = query.replace(/^\s+/, '').replace(/\s+$/, '');
+    if(userText === ''){
+      return
+    }
     dispatch(addResultSearch({
       loading : true,
       removeCopyArray : true,
