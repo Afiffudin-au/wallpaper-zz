@@ -1,13 +1,13 @@
 import { createClient } from 'pexels';
 import { useDispatch } from 'react-redux';
 import { addVideoDetails, addVideos, addVideoSearch } from '../features/videoSlice';
+const client = createClient('563492ad6f9170000100000170236dd5ebbc4d13936b1f6d2e44461c');
 export function useGetVideoPopular(){
   const dispatch = useDispatch()
   const getVideoPopular = (pageNumber)=>{
     dispatch(addVideos({
       loading:true
     }))
-    const client = createClient('563492ad6f9170000100000170236dd5ebbc4d13936b1f6d2e44461c');
     client.videos.popular({ per_page: 20,page : pageNumber }).then(videos => {
       dispatch(addVideos({
         loading:false,
@@ -24,7 +24,6 @@ export function useGetVideoPopular(){
 }
 export function useGetVideoDetail(){
   const dispatch = useDispatch()
-  const client = createClient('563492ad6f9170000100000170236dd5ebbc4d13936b1f6d2e44461c');
   const getVideoDetail = (id)=>{
     dispatch(addVideoDetails({
       loading : true,
@@ -47,7 +46,6 @@ export function useGetVideoDetail(){
 export function useGetVideoSearch(){
   const dispatch = useDispatch()
   const getVideoSearch = (query,pageNumber)=>{
-    const client = createClient('563492ad6f9170000100000170236dd5ebbc4d13936b1f6d2e44461c');
     dispatch(addVideoSearch({
       loading : true,
       query : query
