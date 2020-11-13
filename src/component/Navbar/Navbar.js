@@ -12,6 +12,7 @@ import VideoLibraryIcon from '@material-ui/icons/VideoLibrary';
 import WallpaperIcon from '@material-ui/icons/Wallpaper';
 import Search from './Search';
 import { Link } from 'react-router-dom';
+import {blue} from '@material-ui/core/colors';
 function Navbar() {
   const classes = useStyleNavbar();
   const [typeSearch,setTypeSearch] = useState('Wallpaper')//default Wallpaper
@@ -19,6 +20,8 @@ function Navbar() {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  const [colorVideoActive,setColorVideoActive] = useState(false)
+  const [colorWallActive,setColorWallActive] = useState(false)
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
   };
@@ -32,9 +35,13 @@ function Navbar() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
   const handleVideosearch = ()=>{
+    setColorWallActive(false)
+    setColorVideoActive(!colorVideoActive)
     setTypeSearch('Videos')
   }
   const handleWallpaperSearch = ()=>{
+    setColorVideoActive(false)
+    setColorWallActive(!colorWallActive)
     setTypeSearch('Wallpaper')
   }
   const menuId = 'primary-search-account-menu';
@@ -67,7 +74,7 @@ function Navbar() {
       <MenuItem onClick={handleVideosearch}>
         <IconButton aria-label="show Video" color="inherit">
           <Badge color="secondary">
-            <VideoLibraryIcon />
+            <VideoLibraryIcon style={colorVideoActive ? {color : blue[500]} : {color : 'black'}} />
           </Badge>
         </IconButton>
         <p>Videos</p>
@@ -75,7 +82,7 @@ function Navbar() {
       <MenuItem onClick={handleWallpaperSearch}>
         <IconButton aria-label="show Wallpaper" color="inherit">
           <Badge color="secondary">
-            <WallpaperIcon />
+            <WallpaperIcon style={colorWallActive ? {color : blue[500]} : {color : 'black'}} />
           </Badge>
         </IconButton>
         <p>Wallpaper</p>
@@ -99,12 +106,12 @@ function Navbar() {
           <div className={classes.sectionDesktop}>
             <IconButton onClick={handleVideosearch} aria-label="show Video" color="inherit">
               <Badge color="secondary">
-                <VideoLibraryIcon />
+                <VideoLibraryIcon style={colorVideoActive ? {color : blue[500]} : {color : 'white'}} />
               </Badge>
             </IconButton>
             <IconButton onClick={handleWallpaperSearch} aria-label="show Wallpaper" color="inherit">
               <Badge color="secondary">
-                <WallpaperIcon />
+                <WallpaperIcon  style={colorWallActive ? {color : blue[500]} : {color : 'white'}} />
               </Badge>
             </IconButton>
           </div>
