@@ -15,13 +15,12 @@ function App() {
   return (
     <Router>
       <div className="App">
+        <Navbar/>
         <Switch>
          <Route path="/search-video">
-            <Navbar/>
             <SearchVideos/>
           </Route>
           <Route path="/search-photo">
-            <Navbar/>
             <SearchPhotos/>
           </Route>
           <Route path="/video-detail">
