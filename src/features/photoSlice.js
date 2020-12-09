@@ -8,7 +8,10 @@ export const photoSlice = createSlice({
       loadingPhotos : null,
       nextPage : null
     },
-    photosDetails : [],
+    photosDetailsBlock : {
+      photos : [],
+      loadingPhotos : null
+    },
     photoSearchBlock : {
       photos : [],
       loadingPhotos : null,
@@ -33,7 +36,13 @@ export const photoSlice = createSlice({
       }
     },
     addPhotoDetails : (state,action)=>{
-      state.photosDetails = action.payload
+      state.photosDetailsBlock.loadingPhotos = action.payload.loading
+      if(action.payload.loading){
+        state.photosDetailsBlock.photos = []
+        return
+      }
+      state.photosDetailsBlock.photos = action.payload.dataPhotoDetails
+      
     },
     addResultSearch : (state,action)=>{
       state.photoSearchBlock.loadingPhotos = action.payload.loading
@@ -54,6 +63,6 @@ export const photoSlice = createSlice({
 
 export const { addPhotos,addPhotoDetails,addResultSearch } = photoSlice.actions
 export const selectPhotos = state => state.photos.photosBlock
-export const selectPhotoDetails = state => state.photos.photosDetails
+export const selectPhotoDetailsBlock = state => state.photos.photosDetailsBlock
 export const selectPhotoSearchBlock = state => state.photos.photoSearchBlock
 export default photoSlice.reducer;

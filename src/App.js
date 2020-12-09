@@ -6,7 +6,6 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import PhotoDetail from './component/PhotoDetail/PhotoDetail';
 import SearchPhotos from './component/SearchPhotos/SearchPhotos';
 import Navbar from './component/Navbar/Navbar';
 import SearchVideos from './component/SearchVideos/SearchVideos';
@@ -25,9 +24,6 @@ function App() {
           </Route>
           <Route path="/video-detail">
             <VideoDetail/>
-          </Route>
-          <Route path="/photo-detail">
-            <PhotoDetail/>
           </Route>
           <Route path="/">
             <Home/>

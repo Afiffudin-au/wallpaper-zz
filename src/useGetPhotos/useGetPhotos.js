@@ -49,7 +49,6 @@ export function useGetPhotoDetail(){
   const getPhotoDetail = (id)=>{
     dispatch(addPhotoDetails({
       loading : true,
-      dataPhotoDetails : []
     }))
     client.photos.show({ id: id }).then(photo => {
       dispatch(addPhotoDetails({
