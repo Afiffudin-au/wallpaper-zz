@@ -11,10 +11,7 @@ function PhotosContainer() {
   const dispatch = useDispatch()
   const {getCuratedPhotos} = useGetCuratedPhotos()
   const [pageNumber,setPageNumber] = useState(1)
-  const photosBlock = useSelector(selectPhotos)
-  const photos = photosBlock.photos
-  const loading = photosBlock.loadingPhotos
-  const nextPage = photosBlock.nextPage
+  const {photos,loadingPhotos,nextPage} = useSelector(selectPhotos)
   useEffect(()=>{
     dispatch(addPhotos({
       removeCopyArray : true
@@ -41,14 +38,14 @@ function PhotosContainer() {
       </div>
       <div style={{position : 'sticky',top : 0,marginBottom : '5px'}}>
       {
-        loading && <LinearProgress color="secondary"/>
+        loadingPhotos && <LinearProgress color="secondary"/>
       }
       </div>
       {
         nextPage && <button className="button_increase" onClick={()=>setPageNumber(current => current + 1)}>Load More...</button>
       }
       {
-        !loading && <IconButton>
+        !loadingPhotos && <IconButton>
           <a href="#navTop">
             <ArrowUpwardIcon className="backTop"/>
           </a>

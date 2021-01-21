@@ -11,10 +11,7 @@ function VideoContainer() {
   const dispatch = useDispatch()
   const [pageNumber,setPageNumber] = useState(1)
   const {getVideoPopular} = useGetVideoPopular()
-  const videosBlock = useSelector(selectVideos)
-  const loading = videosBlock.loadingVideo
-  const videos = videosBlock.videos
-  const nextPage = videosBlock.totalResult
+  const {loadingVideo,videos,totalResult : nextPage} = useSelector(selectVideos)
   let lengthPage = 0;
   videos?.forEach(video=>{
     lengthPage += video?.length
@@ -46,7 +43,7 @@ function VideoContainer() {
       </div>
       <div style={{position : 'sticky',top : 0,marginBottom : '5px'}}>
       {
-        loading && <LinearProgress color="secondary"/>
+        loadingVideo && <LinearProgress color="secondary"/>
       }
       </div>
       {
@@ -56,7 +53,7 @@ function VideoContainer() {
         nextPage && <p className="VideoContainer__p1">{lengthPage} of {nextPage} Videos...</p>
       }
       {
-        !loading && <IconButton>
+        !loadingVideo && <IconButton>
           <a href="#navTop">
             <ArrowUpwardIcon className="backTop"/>
           </a>
