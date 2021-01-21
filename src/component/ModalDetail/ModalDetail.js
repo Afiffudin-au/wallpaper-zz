@@ -1,5 +1,5 @@
 import { IconButton } from '@material-ui/core'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useStylesModal } from '../../useModalStyle/ModalStyle'
 import './ModalDetail.scss'
 import CloseIcon from '@material-ui/icons/Close';
@@ -48,24 +48,18 @@ function ModalDetail({handleClose}) {
        
       </div>
       <div className="Preview">
-        <button className="buttonPreview" onClick={()=>handlePreview(photos.src?.tiny)} disabled={loadingDownload}>Preview tiny</button>
-        <button className="buttonPreview" onClick={()=>handlePreview(photos.src?.small)} disabled={loadingDownload}>Preview small</button>
-        <button className="buttonPreview" onClick={()=>handlePreview(photos.src?.portrait)} disabled={loadingDownload}>Preview portrait</button>
-        <button className="buttonPreview" onClick={()=>handlePreview(photos.src?.original)} disabled={loadingDownload}>Preview Original</button>
-        <button className="buttonPreview" onClick={()=>handlePreview(photos.src?.medium)} disabled={loadingDownload}>Preview medium</button>
-        <button className="buttonPreview" onClick={()=>handlePreview(photos.src?.large2x)} disabled={loadingDownload}>Preview large2x</button>
-        <button className="buttonPreview" onClick={()=>handlePreview(photos.src?.large)} disabled={loadingDownload}>Preview large</button>
-        <button className="buttonPreview" onClick={()=>handlePreview(photos.src?.landscape)} disabled={loadingDownload}>Preview landscape</button>
+      {
+        Object.keys(photos.src || {}).map((size,index)=>(
+        <button key={index} className="buttonPreview" onClick={()=>handlePreview(photos.src[size])} disabled={loadingDownload}>Preview {size}</button>
+        ))
+      }
       </div>
       <div className="downloadContainer">
-        <button className="buttonDownload" onClick={()=>getDownloadPhoto(photos.src?.tiny)} disabled={loadingDownload}>Download tiny</button>
-        <button className="buttonDownload" onClick={()=>getDownloadPhoto(photos.src?.small)} disabled={loadingDownload}>Download small</button>
-        <button className="buttonDownload" onClick={()=>getDownloadPhoto(photos.src?.portrait)} disabled={loadingDownload}>Download portrait</button>
-        <button className="buttonDownload" onClick={()=>getDownloadPhoto(photos.src?.original)} disabled={loadingDownload}>Download Original</button>
-        <button className="buttonDownload" onClick={()=>getDownloadPhoto(photos.src?.medium)} disabled={loadingDownload}>Download medium</button>
-        <button className="buttonDownload" onClick={()=>getDownloadPhoto(photos.src?.large2x)} disabled={loadingDownload}>Download large2x</button>
-        <button className="buttonDownload" onClick={()=>getDownloadPhoto(photos.src?.large)} disabled={loadingDownload}>Download large</button>
-        <button className="buttonDownload" onClick={()=>getDownloadPhoto(photos.src?.landscape)} disabled={loadingDownload}>Download landscape</button>
+      {
+        Object.keys(photos.src || {}).map((size,index)=>(
+        <button key={index} className="buttonDownload" onClick={()=>getDownloadPhoto(photos.src[size])} disabled={loadingDownload}>Download {size}</button>
+        ))
+      }
       </div>
      </div>
      
