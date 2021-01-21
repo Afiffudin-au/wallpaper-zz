@@ -9,13 +9,9 @@ import CardVideo from '../CardVideo/CardVideo';
 function SearchVideos() {
   const [pageNumber,setPageNumber] = useState(1)
   const {getVideoSearch} = useGetVideoSearch()
-  const videoSearchBlock = useSelector(selectVideoSearchBlock)
-  const loading = videoSearchBlock.loadingVideo
-  const nextPage = videoSearchBlock.totalResult
-  const query = videoSearchBlock.query
-  const videos =videoSearchBlock.videos
+  const {loadingVideo,totalResult : nextPage,query,videos} = useSelector(selectVideoSearchBlock)
   const checkLengthVideo = videos[0]?.length <=1 || videos[0]?.length === 0
-  const checkCannotFind = checkLengthVideo && !loading
+  const checkCannotFind = checkLengthVideo && !loadingVideo
   useEffect(() => {
     if(pageNumber === 1){
       return
@@ -45,14 +41,14 @@ function SearchVideos() {
 
       <div style={{position : 'sticky',top : 0,marginBottom : '5px'}}>
         {
-          loading && <LinearProgress color="secondary"/>
+          loadingVideo && <LinearProgress color="secondary"/>
         }
       </div>
       {
         nextPage && <button className="button_increase" onClick={()=>setPageNumber(current => current + 1)}>Load More...</button>
       }
       {
-        !loading && <IconButton>
+        !loadingVideo && <IconButton>
           <a href="#navbar__top">
             <ArrowUpwardIcon className="backTop"/>
           </a>
