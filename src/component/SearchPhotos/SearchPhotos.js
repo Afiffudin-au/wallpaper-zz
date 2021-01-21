@@ -7,19 +7,16 @@ import { useGetSearchPhotos } from '../../useGetPhotos/useGetPhotos'
 import CardPhoto from '../CardPhoto/CardPhoto'
 import './SearchPhotos.scss'
 function SearchPhotos() {
-  const photoSearchBlock = useSelector(selectPhotoSearchBlock)
-  const loading = photoSearchBlock.loadingPhotos
-  const nextPage = photoSearchBlock.nextPage
-  const photos = photoSearchBlock.photos
+  const {loadingPhotos,nextPage,photos,query} = useSelector(selectPhotoSearchBlock)
   const [pageNumber,setPageNumber] = useState(1)
   const {getSearchPhotos} = useGetSearchPhotos()
   const checkLengthVideo = photos[0]?.length <=1 || photos[0]?.length === 0
-  const checkCannotFind = checkLengthVideo && !loading
+  const checkCannotFind = checkLengthVideo && !loadingPhotos
   useEffect(()=>{
     if(pageNumber === 1){
       return 
     }
-    getSearchPhotos(photoSearchBlock.query,pageNumber)
+    getSearchPhotos(query,pageNumber)
   },[pageNumber])
   return (
     <div className="SearchPhotos">
@@ -42,7 +39,7 @@ function SearchPhotos() {
       </div>
       <div style={{position : 'sticky',top : 0,marginBottom : '5px'}}>
         {
-          loading && <LinearProgress color="secondary"/>
+          loadingPhotos && <LinearProgress color="secondary"/>
         }
       </div>
       {
