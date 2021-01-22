@@ -24,13 +24,7 @@ export const videoSlice = createSlice({
         state.videosBlock.videos.length = 0
         return
       }
-      //secure for undefined 
-      if(action.payload.dataVideo === undefined){
-        return
-      }
-      if(!action.payload.loading){
-        state.videosBlock.videos = [...state.videosBlock.videos,action.payload?.dataVideo?.videos]
-      }
+      state.videosBlock.videos = [...state.videosBlock.videos,action.payload?.dataVideo?.videos || []]
     },
     addVideoDetails : (state,action)=>{
       state.videosDetails = action.payload
@@ -42,14 +36,8 @@ export const videoSlice = createSlice({
       if(action.payload.removeCopyArray){
         state.videoSearchBlock.videos.length = 0
         return
-      }
-      //secure for undefined 
-      if(action.payload.dataVideo === undefined){
-        return
-      }
-      if(!action.payload.loading){
-        state.videoSearchBlock.videos = [...state.videoSearchBlock.videos,action.payload?.dataVideo?.videos]
-      }
+      } 
+      state.videoSearchBlock.videos = [...state.videoSearchBlock.videos,action.payload?.dataVideo?.videos || []]
     }
   },
 });
