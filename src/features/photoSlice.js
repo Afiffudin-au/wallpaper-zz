@@ -27,22 +27,11 @@ export const photoSlice = createSlice({
         state.photosBlock.photos.length = 0
         return
       }
-      // secure for undefined . 
-      if(action.payload.dataPhotos === undefined){
-        return
-      }
-      if(!action.payload.loading){
-        state.photosBlock.photos = [...state.photosBlock.photos,action.payload?.dataPhotos?.photos]
-      }
+      state.photosBlock.photos = [...state.photosBlock.photos,action.payload?.dataPhotos?.photos || []]
     },
     addPhotoDetails : (state,action)=>{
       state.photosDetailsBlock.loadingPhotos = action.payload.loading
-      if(action.payload.loading){
-        state.photosDetailsBlock.photos = []
-        return
-      }
-      state.photosDetailsBlock.photos = action.payload.dataPhotoDetails
-      
+      state.photosDetailsBlock.photos = action.payload.dataPhotoDetails || []
     },
     addResultSearch : (state,action)=>{
       state.photoSearchBlock.loadingPhotos = action.payload.loading
@@ -51,12 +40,7 @@ export const photoSlice = createSlice({
       if(action.payload.removeCopyArray){
         state.photoSearchBlock.photos.length = 0
       }
-      if(action.payload.dataPhotosResult === undefined){
-        return
-      }
-      if(!action.payload.loading){
-        state.photoSearchBlock.photos = [...state.photoSearchBlock.photos,action.payload?.dataPhotosResult?.photos]
-      }
+      state.photoSearchBlock.photos = [...state.photoSearchBlock.photos,action.payload?.dataPhotosResult?.photos || []]
     }
   },
 });
