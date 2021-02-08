@@ -23,18 +23,14 @@ function Search({typeSearch}) {
     }
     if(typeSearch === 'Wallpaper'){
       dispatch(addResultSearch({
-        loading : true,
         removeCopyArray : true,
-        dataPhotosResult : [],
       }))
       getSearchPhotos(query)
       history.push('/search-photo')
     }
     if(typeSearch === 'Videos'){
       dispatch(addVideoSearch({
-        loading : true,
         removeCopyArray : true,
-        dataVideo : []
       }))
       getVideoSearch(query)
       history.push('/search-video')

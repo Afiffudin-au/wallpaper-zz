@@ -10,8 +10,6 @@ function SearchVideos() {
   const [pageNumber,setPageNumber] = useState(1)
   const {getVideoSearch} = useGetVideoSearch()
   const {loadingVideo,totalResult : nextPage,query,videos} = useSelector(selectVideoSearchBlock)
-  const checkLengthVideo = videos[0]?.length <=1 || videos[0]?.length === 0
-  const checkCannotFind = checkLengthVideo && !loadingVideo
   useEffect(() => {
     if(pageNumber === 1){
       return
@@ -21,7 +19,7 @@ function SearchVideos() {
   return (
     <div className="SearchVideos">
       {
-        checkCannotFind && <p>Sorry We Cannot Find...</p>
+        nextPage === 0 && <p>Sorry We Cannot Find...</p>
       }
       <div className="SearchVideos__grid">
       {

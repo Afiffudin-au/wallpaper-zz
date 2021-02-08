@@ -19,9 +19,7 @@ function SearchBanner() {
       return
     }
     dispatch(addResultSearch({
-      loading : true,
       removeCopyArray : true,
-      dataPhotosResult : [],
     }))
     getSearchPhotos(query)
     history.push('/search-photo')

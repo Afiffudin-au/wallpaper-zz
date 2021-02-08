@@ -30,10 +30,12 @@ export function useGetSearchPhotos(){
       query : query
     }))
     client.photos.search({ query , per_page: 20,page : pageNumber }).then(photos => {
+      console.log(photos)
       dispatch(addResultSearch({
         loading : false,
         dataPhotosResult : photos,
-        query : query
+        query : query,
+        totalResults : photos.total_results
       }))
     }).catch(err=>{
       dispatch(addResultSearch({

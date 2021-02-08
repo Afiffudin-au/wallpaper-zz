@@ -16,7 +16,8 @@ export const photoSlice = createSlice({
       photos : [],
       loadingPhotos : null,
       nextPage : null,
-      query : ''
+      query : '',
+      totalResults : null
     }
   },
   reducers: {
@@ -37,6 +38,7 @@ export const photoSlice = createSlice({
       state.photoSearchBlock.loadingPhotos = action.payload.loading
       state.photoSearchBlock.query = action.payload.query
       state.photoSearchBlock.nextPage  = action.payload.dataPhotosResult?.next_page
+      state.photoSearchBlock.totalResults = action.payload.totalResults
       if(action.payload.removeCopyArray){
         state.photoSearchBlock.photos.length = 0
       }
